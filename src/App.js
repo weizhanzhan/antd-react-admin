@@ -15,9 +15,9 @@ function App() {
   return (
     <Router>
 
-        <Route path="/" exact component={Layout} />
-        <Route path="/login/" component={Login} />
-        <Route path="/users/" component={Users} />
+        <Route path="/layout" component={Layout} />
+        <Route path="/login" component={Login} />
+        <Route path="/users" component={Users} />
 
     </Router>
   );
