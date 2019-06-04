@@ -1,22 +1,15 @@
 import React,{ Component } from 'react'
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb } from 'antd';
+import { Route } from 'react-router-dom'
 import WSider from './components/Sider'
 import BlogList from '../Blog/List'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-
+import BlogCreate from '../Blog/Create'
+import AccountIndex from '../Account/index'
+import AccountSetting from '../Account/Setting'
+import AccountMore from '../Account/More'
+import AccountRole from '../Account/Role'
 const { Header, Content, Footer,  } = Layout;
 
-function test1(){
-    return(
-        <div>Hello</div>
-    )
-}
-
-function test2(){
-    return(
-        <div>Hello2</div>
-    )
-}
 
 class Layouts extends Component{
     state = {
@@ -37,10 +30,15 @@ class Layouts extends Component{
                         <Breadcrumb.Item>Bill</Breadcrumb.Item>
                     </Breadcrumb>
                     <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                         <Link to="/layout/test1">test1</Link>
-                         <Link to="/layout/test2">test2</Link>
-                         <Route path="/layout/test1" exact  component={test1} />
-                         <Route path="/layout/test2" exact  component={test2} />
+                         
+                         <Route path="/blog/list"   component={BlogList} />
+                         <Route path="/blog/create"  component={BlogCreate} />
+                         <Route path="/account/index"   component={AccountIndex} />
+                         <Route path="/account/setting"  component={AccountSetting} />
+                        
+                         <Route path="/account/more/role" component={ AccountRole }/>
+
+                         <Route path="/account/more" component={ AccountMore }/>
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>

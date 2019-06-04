@@ -1,32 +1,102 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import '../index.css'
+import Router from '../../../router'
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom'
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
-function WSider (props){
-    return(
-        <Sider collapsible collapsed={props.collapsed} onCollapse={props.onCollapse}>
-            <div className="logo" />
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                <SubMenu
-                    key="sub1"
-                    title={
-                        <span>
-                        <Icon type="user" />
-                        <span>Blog</span>
-                        </span>
-                    }
+class WSider extends Component{
+    constructor(props){
+        super(props)
+
+        //改变方法内this指向
+        this.onOpenChange = this.onOpenChange.bind(this)
+    }
+    state = {
+        openKeys: [],
+    };
+
+    componentWillReceiveProps(){
+        /*
+         * 该生命周期函数内 改变state属性 不会导致无限循环
+         * 在这里根据路由地址（this.props.history.location.pathname ！！！注意是props.history 不是 props.location ,后者是开始跳转的地址，前者才是跳转后的地址） 
+         * 根据地址解析openKeys（展开的subMenu）
+         * 自己定义的路由表是有规则的，比方说 /blog/list, 那么我的以及路由就定义为/blog,二级路由为 /blog/list,
+         * 那么我解析默认展开的subMenu的原理就是 通过二级地址/blog/list 去解析得到一级路由 /blog(三级路由以及多级路由以此类推)
+         * 和这个生命周期函数能实现一样操作的方法，见我componentDidMount的方法 history.listen 一样可以监听到路由的变化
+         */
+        this.setRouteChangeMenuState()   
+    }
+    componentDidMount(){
+        this.setRouteChangeMenuState()   
+        // this.props.history.listen(() => {
+        //     this.setRouteChangeMenuState()
+        // })
+    }
+    render(){
+    
+        const { location:{ pathname } ,collapsed ,onCollapse} = this.props
+        return(
+            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+                <div className="logo" />
+                <Menu 
+                    theme="dark" 
+                    selectedKeys={[pathname]} 
+                    mode="inline" 
+                    onOpenChange={this.onOpenChange}
+                    openKeys={this.state.openKeys}
                 >
-                    <Menu.Item key="3">List</Menu.Item>
-                    <Menu.Item key="4">Create</Menu.Item>
-                </SubMenu>
-                <Menu.Item key="9">
-                    <Icon type="setting" />
-                    <span>Setting</span>
-                </Menu.Item>
-            </Menu>
-        </Sider>
-    )
+                    {this.initMenus(Router)}
+                </Menu>
+            </Sider>
+        )
+    }
+    setRouteChangeMenuState(){
+        let props = this.props
+        let openKeys = props.history.location.pathname
+        console.log(openKeys.split('/'))
+        openKeys = '/'+openKeys.split('/')[1]
+        this.setState({
+            openKeys:['/'+openKeys.split('/')[1]]
+        });
+    }
+    onOpenChange = (openKeys) => {
+        const currentKeys = openKeys.length?openKeys[openKeys.length-1]:''
+        console.log('currentKeys',currentKeys, [currentKeys]);
+        this.setState({
+            openKeys:[currentKeys]
+        });
+      }
+    
+    initMenus(routes){
+        const menus = []
+        routes.forEach(router =>{
+            if('children' in router){
+                const route = (
+                     <SubMenu
+                        key={router.path}
+                        title={
+                            <span>
+                            <Icon type="user" />
+                            <span>{router.title}</span>
+                            </span>
+                        }
+                    >
+                        {this.initMenus(router.children)}      
+                    </SubMenu>
+                )
+                menus.push(route)
+            }else{
+                const route = ( <Menu.Item key={router.path}>
+                    {router.title}
+                     <Link to={router.path}>{router.title}</Link>
+                </Menu.Item>)
+                menus.push(route)
+            }
+        })
+        return menus
+    }
 }
-export default WSider
+export default withRouter(WSider)

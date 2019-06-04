@@ -1,24 +1,16 @@
 import React from 'react';
 import Login from './views/Login'
 import Layout from './views/Layout'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-function Index() {
-  return <h2>Home</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
 
 function App() {
   return (
     <Router>
-
-        <Route path="/layout" component={Layout} />
-        <Route path="/login" component={Login} />
-        <Route path="/users" component={Users} />
-
+      <Switch>
+        <Route path="/login"  component={Login} />
+        <Route  component={Layout} />
+      </Switch>   
     </Router>
   );
 }
