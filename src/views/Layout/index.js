@@ -1,6 +1,6 @@
 import React,{ Component } from 'react'
 import { Layout, Breadcrumb } from 'antd';
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import WSider from './components/Sider'
 import BlogList from '../Blog/List'
 import BlogCreate from '../Blog/Create'
@@ -30,15 +30,17 @@ class Layouts extends Component{
                         <Breadcrumb.Item>Bill</Breadcrumb.Item>
                     </Breadcrumb>
                     <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                         
-                         <Route path="/blog/list"   component={BlogList} />
-                         <Route path="/blog/create"  component={BlogCreate} />
-                         <Route path="/account/index"   component={AccountIndex} />
-                         <Route path="/account/setting"  component={AccountSetting} />
-                        
-                         <Route path="/account/more/role" component={ AccountRole }/>
+                        <Switch>
+                            <Route path="/blog/list"   component={BlogList} />
+                            <Route path="/blog/create"  component={BlogCreate} />
+                            <Route path="/account/index"   component={AccountIndex} />
+                            <Route path="/account/setting"  component={AccountSetting} />
+                            
+                            <Route path="/account/more/role" component={ AccountRole }/>
 
-                         <Route path="/account/more" component={ AccountMore }/>
+                            <Route path="/account/more" component={ AccountMore }/>
+                        </Switch> 
+                        
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>

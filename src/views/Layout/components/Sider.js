@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { Layout, Menu, Icon } from 'antd';
-import '../index.css'
+import '../index.less'
 import Router from '../../../router'
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom'
