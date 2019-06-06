@@ -18,6 +18,9 @@ class Layouts extends Component{
     onCollapse = collapsed => {
         this.setState({ collapsed });
     };
+    componentDidMount(){
+      
+    }
     render(){
         return(
             <Layout style={{ minHeight: '100vh' }}>
