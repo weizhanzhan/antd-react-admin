@@ -1,5 +1,21 @@
 const path = require('path');
 const { generateTheme, getLessVars } = require('antd-theme-generator');
+const fs = require("fs");
+
+fs.mkdir('./public/static',function(err){
+     if(err){
+         console.log("主题目录创建失败",err)
+     }else{
+        console.log("主题目录创建成功");
+        fs.writeFile('./public/static/color.less',{},function(err){
+             if(err){
+                 console.log("主题color.less文件写入失败",err)
+             }else{
+                 console.log("主题color.less文件写入成功");
+             }
+        }) 
+     }
+}) 
 
 const options = {
   stylesDir: path.join(__dirname, './src/styles'),    //对应具体位置
@@ -22,10 +38,8 @@ const options = {
 
 generateTheme(options)
 .then(less => {
-
     console.log('Theme generated successfully');
 })
   .catch(error => {
-
     console.log('Error', error);
   });
