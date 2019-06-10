@@ -55,18 +55,15 @@ class WSider extends Component{
     }
     setRouteChangeMenuState(){
         //路由改变会触发该方法，在这设置menu高亮
-        let keysArr,openKeys=[],path=''
+        let keysArr,openKeys=[]
         keysArr = this.props.history.location.pathname
         keysArr= keysArr.split('/').filter(key=>!!key)//去掉第一位空格
         keysArr.pop()
    
-        keysArr.forEach(key=>{
-            path +='/' + key
-            openKeys.push(path)   
+        keysArr.forEach((key,i)=>{
+            openKeys.push(`/${keysArr.slice(0,i+1).join('/')}`)
         })
-        this.setState({
-            openKeys
-        });
+        this.setState({ openKeys });
     }
     onOpenChange = (openKeys) => {
         const currentKeys = openKeys.length?openKeys[openKeys.length-1]:''

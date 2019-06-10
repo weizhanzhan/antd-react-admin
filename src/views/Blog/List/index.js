@@ -1,12 +1,10 @@
-
 import React,{Component} from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom'
 import { Button ,message} from 'antd';
+
 class BlogList extends Component{
-   
     render(){
-        const size= 'large'
         return(
             <div>
                 <h1>个人主页More</h1>
