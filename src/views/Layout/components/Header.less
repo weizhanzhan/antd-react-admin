@@ -1,0 +1,45 @@
+.w_col{
+    text-align: center
+}
+.w_col:hover{
+//    background: var(--PC)  使用全局主题色
+    background: rgba(0, 0, 0, 0.024);
+   
+}
+.w_icon{
+    font-size: 18px;
+    color: #08c
+}
+.w_icon.theme{
+    color: var(--PC)
+}
+.w_theme_select{
+    width: 130px;
+    height: 100px;
+    padding: 8px 0 8px 12px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    .w_theme_select_title{
+        margin-bottom: 12px;
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .w_theme_content{
+        box-sizing: border-box;
+        .w_theme_color_block{
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+    }
+}
+
