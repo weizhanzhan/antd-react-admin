@@ -1,14 +1,14 @@
 import React,{Component} from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom'
-class CreateBlog extends Component{
+class Workplace extends Component{
     render(){
         return(
             <div>
-                <h1>Create</h1>
-                <Link to='/blog/list'>list</Link>
+                <h1>Workplace</h1>
+                <Link to='/account/more/role'>role</Link>
             </div>
         )
     }
 }
-export default withRouter(CreateBlog)
+export default withRouter(Workplace)

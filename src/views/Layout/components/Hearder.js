@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
-import { Row, Col,  Menu, Dropdown, Icon  } from 'antd';
-import { Layout } from 'antd';
-import { message} from 'antd';
+import { Row, Col,  Menu, Dropdown, Icon, Avatar  } from 'antd';
+import { Layout, message } from 'antd';
+import { Link } from 'react-router-dom'
 import './Header.less'
 const { Header } = Layout;
 class WHeader extends Component {
@@ -19,22 +19,27 @@ class WHeader extends Component {
         ]
     }
     render(){
-        const menu = (
+        const Account = (
+            <Menu>
+              <Menu.Item key="0"> 
+                <Link to="/account/center"><Icon type="user" /> 个人中心</Link>
+              </Menu.Item>
+              <Menu.Item key="1">
+                <Link to="/account/setting"><Icon type="setting" /><span> 个人设置</span></Link>         
+              </Menu.Item>
+              <Menu.Divider />
+              <Menu.Item key="3" >
+                <Icon type="logout" /><span>退出</span>
+              </Menu.Item>
+            </Menu>
+        );
+        const Lang = (
             <Menu>
               <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-                  1st menu item
-                </a>
+                <span> CN 简体中文 </span>
               </Menu.Item>
               <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-                  2nd menu item
-                </a>
-              </Menu.Item>
-              <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-                  3rd menu item
-                </a>
+                <span>  GB English </span>
               </Menu.Item>
             </Menu>
         );
@@ -55,29 +60,34 @@ class WHeader extends Component {
                         })
                     }
                 </div>
+                {/* <Divider /> */}
+                {/* <h3 className="w_theme_select_title">Menu Color</h3>
+                <div className="w_theme_content">
+                    
+                </div> */}
             </div>
         )
         return(
             <Header style={{ background: '#fff', padding: 0 }} >
-                <Row>
-                    <Col span={8}>col-8</Col>
-                    <Col span={8} offset={8}>
-                      <Row>
-                        <Col className="w_col" span={8}>col-8</Col>
-                        <Dropdown overlay={Theme}>
-                            <Col className="w_col" span={4}>
-                                <Icon type="bg-colors"  className="w_icon theme" />
-                            </Col>
-                        </Dropdown>
-                        <Dropdown overlay={menu}>
-                          <Col className="w_col" span={8}>
-                            <span>
-                              Hover me <Icon type="down" />
-                            </span>                     
-                          </Col>
-                        </Dropdown>
-                      </Row>
-                    </Col>
+                <Row type="flex" justify="end">
+                    <Dropdown overlay={Account}>
+                        <Col className="w_col" xs={10} sm={10} md={8} lg={6} xl={3}>
+                            <div style={{lineHeight:4}}>
+                                <Avatar size="small" src="http://blog.zhanwei.xyz/ico.png" />
+                                <span>  zhanzhan.wei</span>
+                            </div>
+                        </Col>
+                    </Dropdown>
+                    <Dropdown overlay={Lang}>
+                        <Col className="w_col" xs={5} sm={4} md={3} lg={2} xl={1}>
+                        <Icon type="global" className="w_icon" />                    
+                        </Col>
+                    </Dropdown>
+                    <Dropdown overlay={Theme}>
+                        <Col className="w_col"  xs={5} sm={4} md={3} lg={2} xl={1}>
+                            <Icon type="bg-colors"  className="w_icon theme" />
+                        </Col>
+                    </Dropdown>
                 </Row> 
             </Header>
         )
@@ -86,8 +96,6 @@ class WHeader extends Component {
         console.log(this.color,window.less)
     }
     changeColor(color){
-       
-      //  message.info('正在切换主题');
         window.less
             .modifyVars(
                 {

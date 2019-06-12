@@ -4,8 +4,8 @@ import { Route, Switch } from 'react-router-dom'
 import WSider from './components/Sider'
 import WHeader from './components/Hearder'
 import WBreadcrumb from './components/Breadcrumb'
-import BlogList from '../Blog/List'
-import BlogCreate from '../Blog/Create'
+import Analysis from '../Dashboard/Analysis'
+import Workplace from '../Dashboard/Workplace'
 import AccountIndex from '../Account/index'
 import AccountSetting from '../Account/Setting'
 import AccountMore from '../Account/More'
@@ -30,8 +30,8 @@ class Layouts extends Component{
                         <WBreadcrumb/>
                         <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                             <Switch>
-                                <Route path="/blog/list"   component={BlogList} />
-                                <Route path="/blog/create"  component={BlogCreate} />
+                                <Route path="/dashboard/analysis"   component={Analysis} />
+                                <Route path="/dashboard/workplace"  component={Workplace} />
                                 <Route path="/account/index"   component={AccountIndex} />
                                 <Route path="/account/setting"  component={AccountSetting} />              
                                 <Route path="/account/more/role" component={ AccountRole }/>

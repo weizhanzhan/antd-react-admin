@@ -6,7 +6,7 @@ class AccountRole extends Component{
         return(
             <div>
                 <h1>AccountRole</h1>
-                <Link to='/blog/list'>list</Link>
+                <Link to='/dashboard/analysis'>list</Link>
             </div>
         )
     }

@@ -23,8 +23,8 @@ class WSider extends Component{
          * 该生命周期函数内 改变state属性 不会导致无限循环
          * 在这里根据路由地址（this.props.history.location.pathname ！！！注意是props.history 不是 props.location ,后者是开始跳转的地址，前者才是跳转后的地址） 
          * 根据地址解析openKeys（展开的subMenu）
-         * 自己定义的路由表是有规则的，比方说 /blog/list, 那么我的以及路由就定义为/blog,二级路由为 /blog/list,
-         * 那么我解析默认展开的subMenu的原理就是 通过二级地址/blog/list 去解析得到一级路由 /blog(三级路由以及多级路由以此类推)
+         * 自己定义的路由表是有规则的，比方说 /dashboard/analysis, 那么我的以及路由就定义为/dashboard,二级路由为 /dashboard/analysis,
+         * 那么我解析默认展开的subMenu的原理就是 通过二级地址/dashboard/analysis 去解析得到一级路由 /dashboard(三级路由以及多级路由以此类推)
          * 和这个生命周期函数能实现一样操作的方法，见我componentDidMount的方法 history.listen 一样可以监听到路由的变化
          */
         this.setRouteChangeMenuState()   
@@ -39,10 +39,10 @@ class WSider extends Component{
     
         const { location:{ pathname } ,collapsed ,onCollapse} = this.props
         return(
-            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-                <div className="logo" />
+            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} theme="dark" >
+                <div className="logo" ></div>
                 <Menu 
-                    theme="dark" 
+                    theme="dark"
                     selectedKeys={[pathname]} 
                     mode="inline" 
                     onOpenChange={this.onOpenChange}
@@ -89,8 +89,8 @@ class WSider extends Component{
                         key={router.path}
                         title={
                             <span>
-                            <Icon type="user" />
-                            <span>{router.title}</span>
+                                <Icon type={router.meta.icon} />
+                                <span>{router.title}</span>
                             </span>
                         }
                     >

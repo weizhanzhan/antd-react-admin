@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Switch>
         <Route path='/' exact render={()=> (
-            <Redirect to="/blog/list"/>
+            <Redirect to="/dashboard/analysis"/>
         )}/>
         <Route path="/login"  component={Login} />
         <Route component={Layout}/>
