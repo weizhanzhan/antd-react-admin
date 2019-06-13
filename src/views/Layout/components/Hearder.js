@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Row, Col,  Menu, Dropdown, Icon, Avatar  } from 'antd';
+import { Row, Col,  Menu, Dropdown, Icon, Avatar , Switch  } from 'antd';
 import { Layout, message } from 'antd';
 import { Link } from 'react-router-dom'
 import './Header.less'
@@ -16,7 +16,8 @@ class WHeader extends Component {
             'rgb(24, 144, 255)',
             'rgb(47, 84, 235)',
             'rgb(114, 46, 209)'
-        ]
+        ],
+        themeVisible:false
     }
     render(){
         const Account = (
@@ -60,41 +61,66 @@ class WHeader extends Component {
                         })
                     }
                 </div>
-                {/* <Divider /> */}
-                {/* <h3 className="w_theme_select_title">Menu Color</h3>
-                <div className="w_theme_content">
-                    
-                </div> */}
+                <h3 className="w_theme_select_title">
+                    Menu Color
+                </h3>
+                <div>
+                <Switch 
+                    checkedChildren="Dark" 
+                    unCheckedChildren="Light" 
+                    defaultChecked 
+                />
+                </div>
+                
+  
             </div>
         )
         return(
             <Header style={{ background: '#fff', padding: 0 }} >
-                <Row type="flex" justify="end">
-                    <Dropdown overlay={Account}>
-                        <Col className="w_col" xs={10} sm={10} md={8} lg={6} xl={3}>
-                            <div style={{lineHeight:4}}>
-                                <Avatar size="small" src="http://blog.zhanwei.xyz/ico.png" />
-                                <span>  zhanzhan.wei</span>
-                            </div>
-                        </Col>
-                    </Dropdown>
-                    <Dropdown overlay={Lang}>
-                        <Col className="w_col" xs={5} sm={4} md={3} lg={2} xl={1}>
-                        <Icon type="global" className="w_icon" />                    
-                        </Col>
-                    </Dropdown>
-                    <Dropdown overlay={Theme}>
-                        <Col className="w_col"  xs={5} sm={4} md={3} lg={2} xl={1}>
-                            <Icon type="bg-colors"  className="w_icon theme" />
-                        </Col>
-                    </Dropdown>
-                </Row> 
+                <Row>
+                    <Col span={1} style={{textAlign:'right'}}>
+                        <Icon
+                            className="w_icon"
+                            type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
+                            onClick={this.props.onCollapse}
+                        />
+                    </Col>
+                    <Col span={23}>
+                         <Row type="flex" justify="end">
+                            <Dropdown overlay={Lang}>
+                                <Col className="w_col" xs={5} sm={4} md={3} lg={2} xl={1}>
+                                    <Icon type="global" className="w_icon theme" />                    
+                                </Col>
+                            </Dropdown>
+                            <Dropdown 
+                                overlay={Theme} 
+                                onVisibleChange={this.handleVisibleChange}
+                                visible={this.state.themeVisible}>
+                                <Col className="w_col"  xs={5} sm={4} md={3} lg={2} xl={1}>
+                                    <Icon type="bg-colors"  className="w_icon theme" />
+                                </Col>
+                            </Dropdown>
+                            <Dropdown overlay={Account}>
+                                <Col className="w_col" xs={10} sm={10} md={8} lg={6} xl={3}>
+                                    <div style={{lineHeight:4}}>
+                                        <Avatar size="small" src="http://blog.zhanwei.xyz/ico.png" />
+                                        <span>  zhanzhan.wei</span>
+                                    </div>
+                                </Col>
+                            </Dropdown>
+                        </Row> 
+                    </Col>
+                </Row>
+               
             </Header>
         )
     }
     componentDidMount(){
         console.log(this.color,window.less)
     }
+    handleVisibleChange = flag => {
+        this.setState({ themeVisible: flag });
+    };
     changeColor(color){
         window.less
             .modifyVars(

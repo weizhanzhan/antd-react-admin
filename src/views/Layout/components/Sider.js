@@ -16,6 +16,7 @@ class WSider extends Component{
     }
     state = {
         openKeys: [],
+        cacheKeys:[]
     };
 
     componentWillReceiveProps(){
@@ -28,28 +29,36 @@ class WSider extends Component{
          * 和这个生命周期函数能实现一样操作的方法，见我componentDidMount的方法 history.listen 一样可以监听到路由的变化
          */
         this.setRouteChangeMenuState()   
+
+        /**
+         * 缩小导航栏时 清空打开的menu key 把他赋值给cacheKeys 展开时在赋值给openkeys
+         */
+        // this.closeCacheKey()
     }
     componentDidMount(){
-        this.setRouteChangeMenuState()   
+        this.setRouteChangeMenuState()  
+        this.props.onRef(this)
         // this.props.history.listen(() => {
         //     this.setRouteChangeMenuState()
         // })
     }
     render(){
     
-        const { location:{ pathname } ,collapsed ,onCollapse} = this.props
+        const { location:{ pathname } ,collapsed } = this.props
         return(
-            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} theme="dark" >
+
+            <Sider  collapsed={collapsed} theme="dark" >
                 <div className="logo" ></div>
                 <Menu 
                     theme="dark"
                     selectedKeys={[pathname]} 
-                    mode="inline" 
+                    mode="inline"
                     onOpenChange={this.onOpenChange}
                     openKeys={this.state.openKeys}
                 >
                     {this.initMenus(Router)}
                 </Menu>
+
             </Sider>
         )
     }
@@ -63,7 +72,23 @@ class WSider extends Component{
         keysArr.forEach((key,i)=>{
             openKeys.push(`/${keysArr.slice(0,i+1).join('/')}`)
         })
-        this.setState({ openKeys });
+        this.setState({ 
+            openKeys,
+            cacheKeys:openKeys
+         });
+    }
+    closeCacheKey = () => {
+        const { collapsed } = this.props
+      
+        if(!collapsed){
+           
+            this.setState({ openKeys:this.state.cacheKeys })
+        }else{
+            this.setState({ 
+                cacheKeys:this.state.openKeys,
+                openKeys:[]
+             })
+        }
     }
     onOpenChange = (openKeys) => {
         const currentKeys = openKeys.length?openKeys[openKeys.length-1]:''

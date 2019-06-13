@@ -17,15 +17,21 @@ class Layouts extends Component{
     state = {
         collapsed: false,
     };
-    onCollapse = collapsed => {
-        this.setState({ collapsed });
+    onCollapse = () => {
+        this.setState({ collapsed:!this.state.collapsed },()=>{
+            this.wside.closeCacheKey()    
+        });
+        
     };
+    onRef = (ref) => {
+        this.wside = ref
+    }
     render(){
         return(
             <Layout style={{ minHeight: '100vh' }}>
-                <WSider collapsed={this.state.collapsed} onCollapse={this.onCollapse}/>
-                <Layout>
-                    <WHeader/>
+                <WSider collapsed={this.state.collapsed} onRef={this.onRef}/>
+                <Layout >
+                    <WHeader collapsed={this.state.collapsed} onCollapse={this.onCollapse} />
                     <Content style={{ margin: '0 16px' }}>
                         <WBreadcrumb/>
                         <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>

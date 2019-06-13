@@ -10,7 +10,7 @@ const router = [
     {
         path:'/account',title:'Account',name:'account', meta:{ icon : 'user' },
         children:[
-            { path:'/account/center',title:"Account Center",name:'index' ,component:()=>import('../views/Account/index')},
+            { path:'/account/center',title:"Account Center",name:'center' ,component:()=>import('../views/Account/index')},
             { path:'/account/setting',title:"Account Setting",name:'setting' ,component:()=>import('../views/Account/Setting')},
             { path:'/account/more',title:"More" ,name:'more',component:()=>import('../views/Account/More'),
                 meta:{ icon : 'user-add' },
