@@ -2,6 +2,7 @@
   "name": "antd-react-admin",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "antd": "^3.19.1",
     "antd-theme-generator": "^1.1.6",

@@ -66,13 +66,12 @@ class WHeader extends Component {
                 </h3>
                 <div>
                 <Switch 
+                    onChange={this.handSwitchChange}
                     checkedChildren="Dark" 
                     unCheckedChildren="Light" 
                     defaultChecked 
                 />
                 </div>
-                
-  
             </div>
         )
         return(
@@ -115,12 +114,13 @@ class WHeader extends Component {
             </Header>
         )
     }
-    componentDidMount(){
-        console.log(this.color,window.less)
-    }
     handleVisibleChange = flag => {
         this.setState({ themeVisible: flag });
     };
+    handSwitchChange = checked => {
+        const theme = checked?'dark':'light'
+        this.props.changeMenuTheme(theme)
+    }
     changeColor(color){
         window.less
             .modifyVars(
