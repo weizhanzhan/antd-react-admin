@@ -69,7 +69,7 @@ class Layouts extends Component{
                      />
                     <Content style={{ margin: '0 16px' }}>
                         <WBreadcrumb/>
-                        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                        <div style={{ minHeight: 360 }}>
                             <Switch>
                                 <Route path="/dashboard/analysis"   component={Analysis} />
                                 <Route path="/dashboard/workplace"  component={Workplace} />

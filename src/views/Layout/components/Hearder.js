@@ -100,7 +100,7 @@ class WHeader extends Component {
                                 </Col>
                             </Dropdown>
                             <Dropdown overlay={Account}>
-                                <Col className="w_col" xs={10} sm={10} md={8} lg={6} xl={3}>
+                                <Col className="w_col" xs={8} sm={7} md={5} lg={4} xl={3}>
                                     <div style={{lineHeight:4}}>
                                         <Avatar size="small" src="http://blog.zhanwei.xyz/ico.png" />
                                         <span>  zhanzhan.wei</span>

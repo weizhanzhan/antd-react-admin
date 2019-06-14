@@ -9,11 +9,13 @@ const { SubMenu } = Menu;
 
 class WSider extends Component{
     render(){
-    
         const { location:{ pathname } ,collapsed,openKeys,onOpenChange, menuTheme } = this.props
         return(
             <Sider  collapsed={collapsed} theme={this.props.menuTheme} >
-                <div className="logo" ></div>
+                <div className="logo" >
+                    <img src="/ico.png"  alt=""></img>
+                    <span className={collapsed?'menu_theme dark hide':'menu_theme dark show'} href="">React Admin</span>
+                </div>
                 <Menu 
                     theme={menuTheme}
                     selectedKeys={[pathname]} 
