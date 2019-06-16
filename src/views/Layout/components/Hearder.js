@@ -2,24 +2,16 @@ import React,{ Component } from 'react';
 import { Row, Col,  Menu, Dropdown, Icon, Avatar , Switch  } from 'antd';
 import { Layout, message } from 'antd';
 import { Link } from 'react-router-dom'
+import config from '../../../config/DefaultSettings'
 import './Header.less'
 const { Header } = Layout;
+const { colors } = config 
 class WHeader extends Component {
-
     state = {
-        colors:[
-            'rgb(245, 34, 45)',
-            'rgb(250, 84, 28)',
-            'rgb(250, 173, 20)',
-            'rgb(19, 194, 194)',
-            'rgb(82, 196, 26)',
-            'rgb(24, 144, 255)',
-            'rgb(47, 84, 235)',
-            'rgb(114, 46, 209)'
-        ],
-        activeColor:'',
+        colors:colors,
+        activeColor:config.primaryColor,
         themeVisible:false
-    }
+    } 
     render(){
         const Account = (
             <Menu>
@@ -126,9 +118,7 @@ class WHeader extends Component {
         this.props.changeMenuTheme(theme)
     }
     changeColor(color){
-        this.setState({
-            activeColor:color
-        })
+        this.setState({ activeColor:color })
         window.less
             .modifyVars(
                 {

@@ -51,7 +51,6 @@ class Layouts extends Component{
     }
     componentDidMount(){
         this.setRouteChangeMenuState()
-        this.setDefaultTheme()
     }
     render(){
         return(
@@ -108,12 +107,7 @@ class Layouts extends Component{
         if(!!currentKeys.match(openedKeys[openedKeys.length-1]))
             this.setState({ openKeys:[...openedKeys,currentKeys] });
         else
-            this.setState({  openKeys:[currentKeys] });
-    
-       
-      }
-      setDefaultTheme(){
-          console.log('我来设置初始化颜色咯')
+            this.setState({  openKeys:[currentKeys] });   
       }
     
 }

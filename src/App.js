@@ -3,7 +3,6 @@ import Login from './views/Login'
 import Layout from './views/Layout'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
-
 function App() {
   return (
     <Router>
