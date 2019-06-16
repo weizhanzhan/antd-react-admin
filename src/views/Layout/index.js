@@ -50,7 +50,8 @@ class Layouts extends Component{
         this.setRouteChangeMenuState()   
     }
     componentDidMount(){
-        this.setRouteChangeMenuState()  
+        this.setRouteChangeMenuState()
+        this.setDefaultTheme()
     }
     render(){
         return(
@@ -110,6 +111,9 @@ class Layouts extends Component{
             this.setState({  openKeys:[currentKeys] });
     
        
+      }
+      setDefaultTheme(){
+          console.log('我来设置初始化颜色咯')
       }
     
 }

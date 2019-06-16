@@ -15,7 +15,7 @@ fs.mkdir('./public/static',function(err){
              }
         }) 
      }
-}) 
+})
 
 const options = {
   stylesDir: path.join(__dirname, './src/styles'),    //对应具体位置

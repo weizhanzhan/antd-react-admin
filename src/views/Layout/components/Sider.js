@@ -12,9 +12,14 @@ class WSider extends Component{
         const { location:{ pathname } ,collapsed,openKeys,onOpenChange, menuTheme } = this.props
         return(
             <Sider  collapsed={collapsed} theme={this.props.menuTheme} >
-                <div className="logo" >
+                <div className={`w_logo ${menuTheme}`} >
                     <img src="/ico.png" alt=""></img>
-                    <span className={collapsed?`menu_theme ${menuTheme} hide`:`menu_theme ${menuTheme} show`} href="">React Admin</span>
+                    <span 
+                        className={collapsed?`menu_theme ${menuTheme} hide`:`menu_theme ${menuTheme} show`} 
+                        href=""
+                    >
+                            React Admin
+                    </span>
                 </div>
                 <Menu 
                     theme={menuTheme}

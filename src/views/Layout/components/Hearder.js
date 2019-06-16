@@ -17,6 +17,7 @@ class WHeader extends Component {
             'rgb(47, 84, 235)',
             'rgb(114, 46, 209)'
         ],
+        activeColor:'',
         themeVisible:false
     }
     render(){
@@ -50,13 +51,16 @@ class WHeader extends Component {
                 <div className="w_theme_content">
                     {
                         this.state.colors.map(color=>{
+                            const isCurrent = (color === this.state.activeColor)
                             return (
                                 <div 
                                     key={color}
                                     className="w_theme_color_block" 
                                     onClick={this.changeColor.bind(this,color)}
                                     style={{backgroundColor: color}} 
-                                />
+                                >
+                                    {isCurrent ? <Icon type="check" /> : ''}
+                                </div>
                             )
                         })
                     }
@@ -122,6 +126,9 @@ class WHeader extends Component {
         this.props.changeMenuTheme(theme)
     }
     changeColor(color){
+        this.setState({
+            activeColor:color
+        })
         window.less
             .modifyVars(
                 {
