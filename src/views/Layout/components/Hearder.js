@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { Row, Col,  Menu, Dropdown, Icon, Avatar , Switch  } from 'antd';
-import { Layout, message } from 'antd';
+import { Layout } from 'antd';
 import { Link } from 'react-router-dom'
 import { updateTheme } from '../../../config/Theme'
 import config from '../../../config/DefaultSettings'
