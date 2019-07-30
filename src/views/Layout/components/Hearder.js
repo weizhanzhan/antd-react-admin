@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { Row, Col,  Menu, Dropdown, Icon, Avatar , Switch  } from 'antd';
 import { Layout, message } from 'antd';
 import { Link } from 'react-router-dom'
+import { updateTheme } from '../../../config/Theme'
 import config from '../../../config/DefaultSettings'
 import './Header.less'
 const { Header } = Layout;
@@ -119,16 +120,7 @@ class WHeader extends Component {
     }
     changeColor(color){
         this.setState({ activeColor:color })
-        window.less
-            .modifyVars(
-                {
-                    '@primary-color': color,
-                    '@link-color': 'color',
-                    '@btn-primary-bg': color,
-                }
-            )
-            .then(res => { message.success('主题更换成功！') })
-            .catch(error => { message.error(`主题更换失败！`) });
-        }
+        updateTheme(color)
+    }
 }
 export default WHeader
