@@ -1,23 +1,21 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-} from 'react-router-dom';
-import routes from './routes';
-import { RouteWithSubRoutes } from './assets/common';
-import { RouteInterface } from './assets/interface';
-import './App.less';
+import routes from './router';
+import { ConnectedRouter } from 'connected-react-router';
 
-const App:React.FC = () => (
-  <Router>
-    <div className="App">
-      <Switch>
-        {routes.map((route: RouteInterface) => {
-          return RouteWithSubRoutes(route)
-        })}
-      </Switch>
-    </div>
-  </Router>
-);
+import { History } from 'history';
+
+interface IApp {
+  history: History;
+}
+function App ({ history }: IApp)  {
+  return (
+    <ConnectedRouter history={history}>
+      {
+        routes
+      }
+    </ConnectedRouter>
+  );
+}
+  
 
 export default App;

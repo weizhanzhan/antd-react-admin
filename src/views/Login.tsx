@@ -1,24 +1,24 @@
-import React from 'react';
+/***
+ * @auth: dmx
+ * @time: 2020/6/19
+ * @func: 登录组件
+ ***/
+import React, {memo} from 'react';
+interface IProps {
 
-import { connect } from 'react-redux'
-import { login } from '../store/action'
-const Login = ({ dispatch, test,history}:{dispatch:Function,test:any,history:any}) => (
-  <div className="App">
-    <h1>登录页</h1>
-    {JSON.stringify(test)}
-    {/* <Link to="/">登录</Link> */}
-    <button onClick={()=>{
-      dispatch(login({userName:'weizhan',password:'123456'}))
-      history?.push('/performance')
-    }}>登录</button>
-  </div>
-);
+}
 
-const mapStateToProps = (state:any) => ({
-  test: state
-})
+const Login: React.FC<IProps> = (props) => {
+  return (
+    <div className="login">
+      <div className="login-layout">
+        <div className='login-layout-header' />
+        login页面
+        <div className='login-layout-footer' />
+       
+      </div>
+    </div>
+  );
+};
 
-
-export default connect(
-  mapStateToProps,
-)(Login);
+export default memo(Login);
