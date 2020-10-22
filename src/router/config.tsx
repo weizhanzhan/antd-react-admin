@@ -14,7 +14,7 @@ export default [
         //1级路由
         path:'/login',
         component:Loadable({
-          loader:()=>import('../views/Login'),
+          loader:()=>import('../views/login/index'),
           ...loadings
         })
       },
@@ -37,6 +37,7 @@ export default [
       {
         path:'/',
         component:Layout,
+     
         routes:[
           {
              // 1级级路由
